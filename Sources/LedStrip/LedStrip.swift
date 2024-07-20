@@ -10,8 +10,8 @@ public final class LedStrip {
 	private var handle: led_strip_handle_t
 
 	public init(
-	pin: UInt32,
-	ledCount count: Int32,
+	pin: Int32,
+	ledCount count: UInt32,
 	pixelFormat: LedPixelFormat = .GRB,
 	model: LedModel = .WS2812,
 	signalSource: SignalSource = .rmt,
@@ -23,7 +23,7 @@ public final class LedStrip {
 			strip_gpio_num: pin,
 			max_leds: count,
 			led_pixel_format: pixelFormat.value,
-			led_model: model.rawValue,
+			led_model: model.value,
 			flags: .init(
 				invert_out: invertOutput ? 1 : 0)
 		)
