@@ -22,8 +22,8 @@ public final class LedStrip {
 		var config = led_strip_config_t(
 			strip_gpio_num: pin,
 			max_leds: count,
-			led_pixel_format: led_pixel_format_t(pixelFormat.rawValue),
-			led_model: led_model_t(model.rawValue),
+			led_pixel_format: pixelFormat.value,
+			led_model: model.rawValue,
 			flags: .init(
 				invert_out: invertOutput ? 1 : 0)
 		)
