@@ -65,10 +65,10 @@ public final class LedStrip {
 		led_strip_del(handle)
 	}
 
-	func clear() { led_strip_clear(handle) }
-	func refresh() { led_strip_refresh(handle) }
+	public func clear() { led_strip_clear(handle) }
+	public func refresh() { led_strip_refresh(handle) }
 
-	func setPixel(at index: UInt32, to color: Color) {
+	public func setPixel(at index: UInt32, to color: Color) {
 		led_strip_set_pixel(handle, index, color.red, color.green, color.blue)
 	}
 }
