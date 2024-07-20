@@ -11,7 +11,7 @@ public final class LedStrip {
 
 	public init(
 	pin: UInt32,
-	ledCount count: UInt32,
+	ledCount count: Int32,
 	pixelFormat: LedPixelFormat = .GRB,
 	model: LedModel = .WS2812,
 	signalSource: SignalSource = .rmt,
@@ -19,18 +19,18 @@ public final class LedStrip {
 	useDMA: Bool = false) {
 		var handle = led_strip_handle_t(bitPattern: 0)
 
-		let config = led_strip_config_t(
+		var config = led_strip_config_t(
 			strip_gpio_num: pin,
 			max_leds: count,
-			led_pixel_format: pixelFormat.rawValue,
-			led_model: model.rawValue,
+			led_pixel_format: led_pixel_format_t(pixelFormat.rawValue),
+			led_model: led_model_t(model.rawValue),
 			flags: .init(
 				invert_out: invertOutput ? 1 : 0)
 		)
 
 		switch signalSource {
 		case .rmt:
-			let rmt_config = led_strip_rmt_config_t(
+			var rmt_config = led_strip_rmt_config_t(
 				clk_src: RMT_CLK_SRC_DEFAULT,
 				resolution_hz: 10_000_000,
 				mem_block_symbols: 0, // Use default
@@ -43,7 +43,7 @@ public final class LedStrip {
 				fatalError("Error creating RMT device")
 			}
 		case .spi:
-			let spi_config = led_strip_spi_config_t(
+			var spi_config = led_strip_spi_config_t(
 				clk_src: SPI_CLK_SRC_DEFAULT,
 				spi_bus: SPI2_HOST,
 				flags: .init(
