@@ -16,7 +16,8 @@ public final class LedStrip {
 	model: LedModel = .WS2812,
 	signalSource: SignalSource = .rmt,
 	invertOutput: Bool = false,
-	useDMA: Bool = false) {
+	useDMA: Bool = false,
+	blockSize: UInt32 = 0) {
 		var handle = led_strip_handle_t(bitPattern: 0)
 
 		var config = led_strip_config_t(
@@ -33,7 +34,7 @@ public final class LedStrip {
 			var rmt_config = led_strip_rmt_config_t(
 				clk_src: RMT_CLK_SRC_DEFAULT,
 				resolution_hz: 10_000_000,
-				mem_block_symbols: 0, // Use default
+				mem_block_symbols: blockSize, // Use default
 				flags: .init(
 					with_dma: useDMA ? 1 : 0
 				)
