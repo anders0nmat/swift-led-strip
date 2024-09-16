@@ -72,7 +72,7 @@ public final class LedStrip {
 		led_strip_set_pixel(handle, index, color.red, color.green, color.blue)
 	}
 
-	public func setPixel(at index: UInt32, to color: (UInt8, UInt8, UInt8, UInt8)) {
+	public func setPixel(at index: UInt32, to color: (UInt32, UInt32, UInt32, UInt32)) {
 		led_strip_set_pixel_rgbw(handle, index, color.0, color.1, color.2, color.3)
 	}
 }
