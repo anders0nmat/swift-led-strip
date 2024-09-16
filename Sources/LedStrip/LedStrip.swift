@@ -17,7 +17,7 @@ public final class LedStrip {
 	signalSource: SignalSource = .rmt,
 	invertOutput: Bool = false,
 	useDMA: Bool = false,
-	blockSize: UInt32 = 0) {
+	blockSize: Int = 0) {
 		var handle = led_strip_handle_t(bitPattern: 0)
 
 		var config = led_strip_config_t(
